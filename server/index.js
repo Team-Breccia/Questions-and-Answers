@@ -1,8 +1,7 @@
-const express = require('express')
-const app = express()
+const app = require('./endpoints.js');
 
-app.get('/', function (req, res) {
-  res.send('Hello, I am a server and I appear to be working')
-})
+const port = 3001;
 
-app.listen(3001);
+app.listen(port, () => {
+  console.log('Success! Server Started!')
+});
