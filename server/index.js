@@ -1,4 +1,4 @@
-const app = require('./endpoints.js');
+const app = require('./app.js');
 
 const port = 3001;
 
