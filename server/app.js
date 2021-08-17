@@ -25,7 +25,13 @@ app.post('/qa/questions/:question_id/answers', (req, res) => {
 });
 
 app.put('/qa/questions/:question_id/helpful', (req, res) => {
-  res.send('Hello, I am a server and I appear to be working')
+  db.helpfulQuestion(req.params.question_id, (err, result) => {
+    if (err) {
+      throw err;
+    } else {
+      res.status(204).send('NO CONTENT');
+    }
+  });
 });
 
 app.put('/qa/questions/:question_id/report', (req, res) => {
