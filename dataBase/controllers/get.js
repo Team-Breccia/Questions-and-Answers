@@ -1,6 +1,14 @@
 const client = require('../index.js');
 
 module.exports = {
+  getQuestions: ({product_id, page, count}, callback) => {
+    var pgsql = `SELECT * FROM questions WHERE product_id = ${product_id} AND reported = 0 LIMIT ${count}`
+
+    client.query(pgsql)
+      .then(data => { callback(null, data)})
+      .catch(err => {callback (err)});
+  },
+
   getAnswers: ({question_id, page, count}, callback) => {
     var pgsql = `SELECT * FROM answers WHERE question_id = ${question_id} AND reported = 0 LIMIT ${count}`
 

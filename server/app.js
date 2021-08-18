@@ -5,21 +5,53 @@ const db = require ('../dataBase/controllers/get.js');
 app.use(express.json());
 
 app.get('/qa/questions', (req, res) => {
-  res.send('Hello, I am a server and I appear to be working')
+  var obj = {
+    product_id: req.query.product_id,
+    page: req.query.page || 1,
+    count: req.query.count || 5
+  }
+
+  db.getQuestions(obj, (err, result) => {
+    if (err) {
+      throw err;
+    } else {
+      var data = {
+        "question": result.product_id,
+        "results": []
+      };
+
+      result.rows.forEach((byte) => {
+
+        var snippet = {
+          "question_id": byte.id,
+          "question_body": byte.body,
+          "question_date": byte.date_written,
+          "asker_name": byte.asker_name,
+          "question_helpfulness": byte.helpful,
+          "reported": false,
+          "answers": {}
+        };
+
+        data.results.push(snippet);
+      });
+
+      res.status(200).send(data);
+    }
+  });
+
 });
 
 app.get('/qa/questions/:question_id/answers', (req, res) => {
   var obj = {
     question_id: req.params.question_id,
-    page: req.body.page || 1,
-    count: req.body.count || 5
+    page: req.query.page || 1,
+    count: req.query.count || 5
   }
 
   db.getAnswers(obj, (err, result) => {
     if (err) {
       throw err;
     } else {
-      console.log(result.rows);
       var data = {
         "question": req.params.question_id,
         "page": obj.page,
