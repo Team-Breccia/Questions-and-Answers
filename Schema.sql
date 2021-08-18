@@ -5,12 +5,12 @@
 
 -- \gexec;
 
--- \c q_and_a;
+\c q_and_a;
 
 -- DROP TABLE questions;
 
 -- CREATE TABLE IF NOT EXISTS questions (
---   id INT PRIMARY KEY,
+--   id SERIAL PRIMARY KEY,
 --   product_id INT,
 --   body text,
 --   date_written BIGINT,
@@ -25,7 +25,7 @@
 -- DROP TABLE answers;
 
 -- CREATE TABLE IF NOT EXISTS answers (
---   id INT PRIMARY KEY,
+--   id SERIAL PRIMARY KEY,
 --   question_id INT,
 --   body text,
 --   date_written BIGINT,
@@ -37,18 +37,16 @@
 
 -- COPY answers FROM '/Users/santiagoveranicola/hackreactor/SDC/Questions-and-Answers/CSV/answers.csv' CSV HEADER;
 
+-- DROP TABLE photos;
 
 -- CREATE TABLE IF NOT EXISTS photos (
---   id INT PRIMARY KEY,
+--   id SERIAL PRIMARY KEY,
 --   answer_id INT,
 --   "url" text
 -- );
 
 -- COPY photos FROM '/Users/santiagoveranicola/hackreactor/SDC/Questions-and-Answers/CSV/answers_photos.csv' CSV HEADER;
 
-
-  -- FOREIGN KEY (photo_id) REFERENCES photos(photo_id),
-  -- FOREIGN KEY (answer_id) REFERENCES answers(answer_id),
 
 -- ALTER TABLE questions
 -- ALTER COLUMN date_written SET DATA TYPE timestamp without time zone
@@ -62,3 +60,6 @@
 -- USING to_timestamp(date_written/1000),
 -- ALTER COLUMN date_written
 -- SET DEFAULT current_timestamp;
+
+
+INSERT INTO answers ("question_id", "body", "answerer_name", "answerer_email" ) VALUES (1, '‘asd’', 'anoasnfnws', 'abc');
