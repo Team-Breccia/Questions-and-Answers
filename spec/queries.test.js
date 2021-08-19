@@ -1,7 +1,7 @@
 const axios = require("axios");
 
 test('get questions endpoint', () => {
-  axios.get('localhost:3001/qa/questions')
+  axios.get('localhost:3001/qa/questions&product_id=5')
     .then (r => {
       expect(r.status).toBeGreaterThanOrEqual(200);
       expect(r.status).toBeLessThan(300);
@@ -22,27 +22,27 @@ test('get answers endpoint', () => {
     })
 });
 
-test('post question endpoint', () => {
-  axios.post('localhost:3001/qa/questions')
-    .then (r => {
-      expect(r.status).toBeGreaterThanOrEqual(200);
-      expect(r.status).toBeLessThan(300);
-    })
-    .catch(err => {
-      throw err;
-    })
-});
+// test('post question endpoint', () => {
+//   axios.post('localhost:3001/qa/questions')
+//     .then (r => {
+//       expect(r.status).toBeGreaterThanOrEqual(200);
+//       expect(r.status).toBeLessThan(300);
+//     })
+//     .catch(err => {
+//       throw err;
+//     })
+// });
 
-test('post answer endpoint', () => {
-  axios.post('localhost:3001/qa/questions/546/answers')
-    .then (r => {
-      expect(r.status).toBeGreaterThanOrEqual(200);
-      expect(r.status).toBeLessThan(300);
-    })
-    .catch(err => {
-      throw err;
-    })
-});
+// test('post answer endpoint', () => {
+//   axios.post('localhost:3001/qa/questions/546/answers')
+//     .then (r => {
+//       expect(r.status).toBeGreaterThanOrEqual(200);
+//       expect(r.status).toBeLessThan(300);
+//     })
+//     .catch(err => {
+//       throw err;
+//     })
+// });
 
 test('helpful question endpoint', () => {
   axios.put('localhost:3001/qa/questions/4/helpful')
