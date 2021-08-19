@@ -21,7 +21,6 @@ app.get('/qa/questions', (req, res) => {
       };
 
       result.rows.forEach((byte) => {
-
         var snippet = {
           "question_id": byte.id,
           "question_body": byte.body,
@@ -31,14 +30,12 @@ app.get('/qa/questions', (req, res) => {
           "reported": false,
           "answers": {}
         };
-
         data.results.push(snippet);
       });
 
       res.status(200).send(data);
     }
   });
-
 });
 
 app.get('/qa/questions/:question_id/answers', (req, res) => {
