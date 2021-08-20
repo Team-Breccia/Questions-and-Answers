@@ -62,4 +62,11 @@
 -- SET DEFAULT current_timestamp;
 
 
-INSERT INTO answers ("question_id", "body", "answerer_name", "answerer_email" ) VALUES (1, '‘asd’', 'anoasnfnws', 'abc');
+-- INSERT INTO answers ("question_id", "body", "answerer_name", "answerer_email" ) VALUES (1, '‘asd’', 'anoasnfnws', 'abc');
+
+
+CREATE INDEX index_questions On questions(id);
+CREATE INDEX index_questions_product_id On questions(product_id);
+CREATE INDEX index_answers_id On answers(id);
+CREATE INDEX index_answers_questions_id On answers(question_id);
+CREATE INDEX index_answers_date_written On answers(date_written);
